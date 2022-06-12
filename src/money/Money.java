@@ -1,10 +1,14 @@
 package money;
 
-class Money {
+class Money implements Expression {
     protected int amount;
     protected String currency;
     Money times(int multiplier) {
         return new Money(amount * multiplier, currency);
+    }
+
+    Expression plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
     }
 
     Money(int amount, String currency) {
@@ -13,8 +17,7 @@ class Money {
     }
     public boolean equals(Object object) {
         Money money = (Money) object;
-        return amount == money.amount
-                && currency.equals(money.currency);
+        return amount == money.amount && currency.equals(money.currency);
     }
 
     static Money dollar(int amount) {
